@@ -1,0 +1,82 @@
+Esse script é escrito em **Batch**, uma linguagem de script usada no Windows para automatizar tarefas. Vou explicar linha por linha:
+
+---
+
+### `@echo off`
+- **Explicação**: Desliga a exibição dos comandos que estão sendo executados no console. Assim, o usuário vê apenas o resultado, sem os comandos.
+
+### `cls:`
+- **Explicação**: Limpa a tela do console, removendo qualquer informação mostrada anteriormente.
+
+### `:menu`
+- **Explicação**: Define o rótulo **`menu`**, usado como referência para ir a esta parte do script com o comando `goto`.
+
+### `cls`
+- **Explicação**: Novamente, limpa a tela do console.
+
+### `color 2`
+- **Explicação**: Muda a cor do texto no console para verde (código `2`).
+
+### Bloco de `echo`
+- **Explicação**: Exibe mensagens no console, como:
+  - **`Programando como uma raiz!!!`** (mensagem de abertura).
+  - Descrição das opções do menu:
+    - **`1 - Mostre os arquivos que está na pasta`**
+    - **`2 - Mostre as informações do sistema onde estou`**
+    - **`3 - Sair`**
+  - A linha de `=` é só para desenhar o menu.
+
+### `set /p opcao- Escolha uma opção:`
+- **Explicação**: Lê a entrada do usuário e armazena o valor na variável `opcao`. O texto "Escolha uma opção:" é mostrado para guiar o usuário.
+
+### Bloco de `if`
+- **Explicação**: Dependendo da escolha do usuário, o script vai para o rótulo correspondente:
+  - **`if %opcao% equ 1 goto opcao1`**: Se a opção for `1`, vai para o rótulo `opcao1`.
+  - **`if %opcao% equ 2 goto opcao2`**: Se a opção for `2`, vai para o rótulo `opcao2`.
+  - **`if %opcao% equ 3 goto opcao3`**: Se a opção for `3`, vai para o rótulo `opcao3`.
+  - **`if %opcao% GEQ 4 goto opcao4`**: Se a opção for maior ou igual a `4`, vai para o rótulo `opcao4` (opção inválida).
+
+### Rótulo `:opcao1`
+- **Explicação**: Se o usuário escolheu `1`:
+  - **`cls`**: Limpa a tela.
+  - **`dir`**: Lista os arquivos e pastas do diretório atual.
+  - **Bloco `echo`**: Mostra "arquivos lidos".
+  - **`pause`**: Pausa a execução até o usuário pressionar uma tecla.
+  - **`goto menu`**: Volta para o menu principal.
+
+### Rótulo `:opcao2`
+- **Explicação**: Se o usuário escolheu `2`:
+  - **`cls`**: Limpa a tela.
+  - **`dir`**: Lista arquivos do diretório (este comando parece incorreto, já que deveria usar `systeminfo` para informações do sistema).
+  - **Bloco `echo`**: Exibe "este é seu sistema".
+  - **`pause`**: Pausa a execução.
+  - **`goto menu`**: Volta para o menu.
+
+### Rótulo `:opcao3`
+- **Explicação**: Se o usuário escolheu `3`:
+  - **`cls`**: Limpa a tela.
+  - **`exit`**: Sai do script.
+
+### Rótulo `:opcao4`
+- **Explicação**: Se o usuário escolheu uma opção inválida (maior ou igual a 4):
+  - **`cls`**: Limpa a tela.
+  - **Bloco `echo`**: Exibe "Opção inválida".
+  - **`pause`**: Pausa a execução.
+  - **`goto menu`**: Volta ao menu principal.
+
+---
+
+#### Observação
+- No bloco de verificação das opções (`if`), todas as condições redirecionam para o rótulo `opcao1`. Isso é um erro, pois a opção `2` deveria ir para `opcao2`, e a `3` para `opcao3`.
+
+1b -
+
+================= MENU =================
+0 - Sair e voltar ao prompt
+1 - Abrir Google Chrome no site da UOL
+2 - Abrir Bloco de Notas
+3 - Trocar a cor do prompt para amarelo
+4 - Listar todas as tarefas em execu├º├úo
+========================================
+Escolha uma op├º├úo:
+
